@@ -20,8 +20,8 @@ import com.google.common.base.Function;
 import com.google.common.collect.Iterables;
 import com.google.common.collect.Lists;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
+
+
 
 import java.io.File;
 import java.net.URI;
@@ -31,9 +31,8 @@ public class Main
 
     public static final Function<File,URI> FILE_TO_URI_TRANSFORM = new Function<File, URI>()
     {
-        @Nonnull
         @Override
-        public URI apply(@Nonnull File input)
+        public URI apply( File input)
         {
             return input.toURI();
         }

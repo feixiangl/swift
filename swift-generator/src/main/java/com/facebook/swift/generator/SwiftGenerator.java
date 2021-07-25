@@ -38,7 +38,7 @@ import com.google.common.collect.Maps;
 import com.google.common.io.Resources;
 import io.airlift.log.Logger;
 
-import javax.annotation.Nullable;
+
 
 import java.io.File;
 import java.io.IOException;
@@ -117,7 +117,7 @@ public class SwiftGenerator
     }
 
     private void parseDocument(final URI thriftUri,
-                               @Nullable final Map<String, SwiftDocumentContext> contexts,
+                                final Map<String, SwiftDocumentContext> contexts,
                                final TypeRegistry typeRegistry,
                                final TypedefRegistry typedefRegistry) throws IOException
     {

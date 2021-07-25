@@ -22,7 +22,7 @@ import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableSortedMap;
 import com.google.common.reflect.TypeToken;
 
-import javax.annotation.concurrent.Immutable;
+
 
 import java.lang.reflect.Type;
 import java.util.Collection;
@@ -34,7 +34,7 @@ import static com.facebook.swift.codec.metadata.ThriftFieldMetadata.isTypePredic
 import static com.google.common.base.Preconditions.checkNotNull;
 import static com.google.common.collect.Maps.uniqueIndex;
 
-@Immutable
+
 public class ThriftStructMetadata
 {
     public static enum MetadataType {

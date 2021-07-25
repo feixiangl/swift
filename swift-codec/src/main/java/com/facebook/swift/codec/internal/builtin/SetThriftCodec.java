@@ -22,10 +22,10 @@ import com.facebook.swift.codec.metadata.ThriftType;
 import com.google.common.base.Preconditions;
 import org.apache.thrift.protocol.TProtocol;
 
-import javax.annotation.concurrent.Immutable;
+
 import java.util.Set;
 
-@Immutable
+
 public class SetThriftCodec<T> implements ThriftCodec<Set<T>>
 {
     private final ThriftCodec<T> elementCodec;

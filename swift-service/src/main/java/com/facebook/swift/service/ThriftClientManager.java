@@ -49,10 +49,10 @@ import org.apache.thrift.protocol.TProtocolException;
 import org.apache.thrift.transport.TTransportException;
 import org.jboss.netty.channel.Channel;
 
-import javax.annotation.Nullable;
+
 import javax.annotation.PreDestroy;
-import javax.annotation.concurrent.Immutable;
-import javax.annotation.concurrent.ThreadSafe;
+
+
 import javax.validation.constraints.NotNull;
 
 import java.io.Closeable;
@@ -75,7 +75,7 @@ import static com.facebook.swift.service.ThriftClientConfig.DEFAULT_WRITE_TIMEOU
 import static com.google.common.base.Preconditions.checkNotNull;
 import static org.apache.thrift.TApplicationException.UNKNOWN_METHOD;
 
-@ThreadSafe
+
 public class ThriftClientManager implements Closeable
 {
     public static final String DEFAULT_NAME = "default";
@@ -133,12 +133,12 @@ public class ThriftClientManager implements Closeable
 
     public <C extends NiftyClientChannel> ListenableFuture<C> createChannel(
             final NiftyClientConnector<C> connector,
-            @Nullable final Duration connectTimeout,
-            @Nullable final Duration receiveTimeout,
-            @Nullable final Duration readTimeout,
-            @Nullable final Duration writeTimeout,
+             final Duration connectTimeout,
+             final Duration receiveTimeout,
+             final Duration readTimeout,
+             final Duration writeTimeout,
             final int maxFrameSize,
-            @Nullable HostAndPort socksProxy)
+             HostAndPort socksProxy)
     {
         final ListenableFuture<C> connectFuture = niftyClient.connectAsync(
                 connector,
@@ -176,13 +176,13 @@ public class ThriftClientManager implements Closeable
     public <T, C extends NiftyClientChannel> ListenableFuture<T> createClient(
             final NiftyClientConnector<C> connector,
             final Class<T> type,
-            @Nullable final Duration connectTimeout,
-            @Nullable final Duration readTimeout,
-            @Nullable final Duration writeTimeout,
+             final Duration connectTimeout,
+             final Duration readTimeout,
+             final Duration writeTimeout,
             final int maxFrameSize,
-            @Nullable final String clientName,
+             final String clientName,
             final List<? extends ThriftClientEventHandler> eventHandlers,
-            @Nullable HostAndPort socksProxy)
+             HostAndPort socksProxy)
     {
         return createClient(
             connector,
@@ -200,14 +200,14 @@ public class ThriftClientManager implements Closeable
     public <T, C extends NiftyClientChannel> ListenableFuture<T> createClient(
             final NiftyClientConnector<C> connector,
             final Class<T> type,
-            @Nullable final Duration connectTimeout,
-            @Nullable final Duration receiveTimeout,
-            @Nullable final Duration readTimeout,
-            @Nullable final Duration writeTimeout,
+             final Duration connectTimeout,
+             final Duration receiveTimeout,
+             final Duration readTimeout,
+             final Duration writeTimeout,
             final int maxFrameSize,
-            @Nullable final String clientName,
+             final String clientName,
             final List<? extends ThriftClientEventHandler> eventHandlers,
-            @Nullable HostAndPort socksProxy)
+             HostAndPort socksProxy)
     {
         checkNotNull(connector, "connector is null");
         checkNotNull(type, "type is null");
@@ -223,7 +223,7 @@ public class ThriftClientManager implements Closeable
                 socksProxy);
 
         ListenableFuture<T> clientFuture = Futures.transform(connectFuture, new Function<C, T>() {
-            @Nullable
+
             @Override
             public T apply(@NotNull C channel)
             {
@@ -371,7 +371,7 @@ public class ThriftClientManager implements Closeable
         }
     }
 
-    @Immutable
+
     public static class ThriftClientMetadata
     {
         private final String clientType;
@@ -556,7 +556,7 @@ public class ThriftClientManager implements Closeable
         }
     }
 
-    @Immutable
+
     private static class TypeAndName
     {
         private final Class<?> type;

@@ -23,7 +23,7 @@
   <parent>
     <groupId>com.facebook.swift</groupId>
     <artifactId>swift-root</artifactId>
-    <version>0.23.2-SNAPSHOT</version>
+    <version>0.23.3-rl-SNAPSHOT</version>
     <relativePath>../pom.xml</relativePath>
   </parent>
 
@@ -86,19 +86,8 @@
     </dependency>
 
     <dependency>
-      <groupId>com.google.code.findbugs</groupId>
-      <artifactId>annotations</artifactId>
-    </dependency>
-
-    <dependency>
       <groupId>io.airlift</groupId>
       <artifactId>log</artifactId>
-    </dependency>
-
-    <dependency>
-      <groupId>com.facebook.swift</groupId>
-      <artifactId>swift-test-utils</artifactId>
-      <scope>test</scope>
     </dependency>
 
     <dependency>
@@ -110,15 +99,6 @@
   </dependencies>
 
   <build>
-      <plugins>
-          <plugin>
-              <artifactId>maven-surefire-plugin</artifactId>
-              <configuration>
-                  <systemPropertyVariables>
-                      <test.output.directory>${project.build.directory}/swift-generated-files</test.output.directory>
-                  </systemPropertyVariables>
-              </configuration>
-          </plugin>
-      </plugins>
+
   </build>
 </project>

@@ -20,12 +20,12 @@ import com.facebook.swift.codec.metadata.ThriftType;
 import com.google.common.base.Preconditions;
 import org.apache.thrift.protocol.TProtocol;
 
-import javax.annotation.concurrent.Immutable;
+
 
 /**
  * VoidThriftCodec is a convenience codec used for service invocations that return void type.
  */
-@Immutable
+
 public class VoidThriftCodec implements ThriftCodec<Void>
 {
     @Override

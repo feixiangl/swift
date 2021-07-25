@@ -21,11 +21,11 @@ import com.facebook.swift.codec.internal.TProtocolWriter;
 import com.facebook.swift.codec.metadata.ThriftType;
 import org.apache.thrift.protocol.TProtocol;
 
-import javax.annotation.concurrent.Immutable;
+
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
-@Immutable
+
 public class LongArrayThriftCodec
         implements ThriftCodec<long[]>
 {

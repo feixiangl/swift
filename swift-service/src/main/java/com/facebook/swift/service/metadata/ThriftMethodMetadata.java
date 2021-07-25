@@ -39,7 +39,7 @@ import com.google.common.util.concurrent.ListenableFuture;
 
 import org.apache.thrift.TException;
 
-import javax.annotation.concurrent.Immutable;
+
 
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Method;
@@ -56,7 +56,7 @@ import static com.facebook.swift.codec.metadata.FieldKind.THRIFT_FIELD;
 import static com.facebook.swift.codec.metadata.ReflectionHelper.extractParameterNames;
 import static com.google.common.base.Preconditions.checkState;
 
-@Immutable
+
 public class ThriftMethodMetadata
 {
     private final String name;

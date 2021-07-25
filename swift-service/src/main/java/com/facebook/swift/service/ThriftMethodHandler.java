@@ -39,8 +39,8 @@ import org.apache.thrift.protocol.TProtocol;
 import org.jboss.netty.buffer.ChannelBuffer;
 import org.weakref.jmx.Managed;
 
-import javax.annotation.Nullable;
-import javax.annotation.concurrent.ThreadSafe;
+
+
 import java.util.List;
 import java.util.Map;
 
@@ -52,7 +52,7 @@ import static org.apache.thrift.protocol.TMessageType.EXCEPTION;
 import static org.apache.thrift.protocol.TMessageType.ONEWAY;
 import static org.apache.thrift.protocol.TMessageType.REPLY;
 
-@ThreadSafe
+
 public class ThriftMethodHandler
 {
     private final String name;
@@ -387,7 +387,7 @@ public class ThriftMethodHandler
         }
 
         @Override
-        public boolean set(@Nullable T value)
+        public boolean set( T value)
         {
             contextChain.done();
             return super.set(value);

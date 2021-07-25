@@ -23,7 +23,7 @@
   <parent>
     <groupId>com.facebook.swift</groupId>
     <artifactId>swift-root</artifactId>
-    <version>0.23.2-SNAPSHOT</version>
+    <version>0.23.3-rl-SNAPSHOT</version>
     <relativePath>../pom.xml</relativePath>
   </parent>
 
@@ -127,10 +127,6 @@
       <artifactId>netty</artifactId>
     </dependency>
 
-    <dependency>
-      <groupId>com.google.code.findbugs</groupId>
-      <artifactId>annotations</artifactId>
-    </dependency>
 
     <dependency>
       <groupId>org.weakref</groupId>
@@ -195,15 +191,6 @@
           </configuration>
         </plugin>
 
-        <!-- unfortunately duplicate finder pluging doesn't recognize the effect of the above configuration -->
-        <!-- so we need to turn off it's checking for the test classpath -->
-        <plugin>
-          <groupId>com.ning.maven.plugins</groupId>
-          <artifactId>maven-duplicate-finder-plugin</artifactId>
-          <configuration>
-            <checkTestClasspath>false</checkTestClasspath>
-          </configuration>
-        </plugin>
       </plugins>
     </pluginManagement>
   </build>

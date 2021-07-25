@@ -25,7 +25,7 @@ import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.Iterables;
 import com.google.common.collect.Lists;
 
-import javax.annotation.concurrent.NotThreadSafe;
+
 
 import java.lang.reflect.Method;
 import java.lang.reflect.Type;
@@ -36,7 +36,7 @@ import java.util.Map;
 import static com.facebook.swift.codec.ThriftField.Requiredness;
 import static com.facebook.swift.codec.metadata.FieldKind.THRIFT_FIELD;
 
-@NotThreadSafe
+
 public class ThriftStructMetadataBuilder
     extends AbstractThriftMetadataBuilder
 {

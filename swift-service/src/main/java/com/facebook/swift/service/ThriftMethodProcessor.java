@@ -42,7 +42,7 @@ import org.apache.thrift.protocol.TProtocol;
 import org.apache.thrift.protocol.TProtocolException;
 import org.weakref.jmx.Managed;
 
-import javax.annotation.concurrent.ThreadSafe;
+
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.lang.reflect.Type;
@@ -50,7 +50,7 @@ import java.util.Map;
 
 import static org.apache.thrift.TApplicationException.INTERNAL_ERROR;
 
-@ThreadSafe
+
 public class ThriftMethodProcessor
 {
     private final String name;

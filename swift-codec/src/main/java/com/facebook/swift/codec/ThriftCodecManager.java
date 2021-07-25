@@ -52,7 +52,7 @@ import org.apache.thrift.protocol.TProtocol;
 import org.apache.thrift.protocol.TProtocolFactory;
 import org.apache.thrift.transport.TIOStreamTransport;
 
-import javax.annotation.concurrent.ThreadSafe;
+
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -69,7 +69,7 @@ import static com.google.common.base.Preconditions.checkState;
  * unknown types as needed.  Since codec creation can be very expensive only one instance of this
  * class should be created.
  */
-@ThreadSafe
+
 public class ThriftCodecManager
 {
     private final ThriftCatalog catalog;

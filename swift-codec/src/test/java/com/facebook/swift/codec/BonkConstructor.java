@@ -15,9 +15,9 @@
  */
 package com.facebook.swift.codec;
 
-import javax.annotation.concurrent.Immutable;
 
-@Immutable
+
+
 @ThriftStruct("Bonk")
 public final class BonkConstructor
 {

@@ -26,7 +26,7 @@ import com.google.inject.Inject;
 import io.airlift.units.Duration;
 import org.weakref.jmx.Managed;
 
-import javax.annotation.Nullable;
+
 
 import java.util.List;
 
@@ -86,7 +86,7 @@ public class ThriftClient<T>
             Duration receiveTimeout,
             Duration readTimeout,
             Duration writeTimeout,
-            @Nullable HostAndPort socksProxy,
+             HostAndPort socksProxy,
             int maxFrameSize,
             List<? extends ThriftClientEventHandler> eventHandlers)
     {

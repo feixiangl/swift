@@ -33,7 +33,7 @@ import org.apache.thrift.transport.TFramedTransport;
 import org.apache.thrift.transport.TSocket;
 import org.testng.annotations.Test;
 
-import javax.annotation.Nullable;
+
 import java.net.InetSocketAddress;
 import java.util.List;
 
@@ -133,7 +133,7 @@ public class TestThriftService
         return Lists.transform(messages, new Function<LogEntry, com.facebook.swift.service.LogEntry>()
         {
             @Override
-            public com.facebook.swift.service.LogEntry apply(@Nullable LogEntry input)
+            public com.facebook.swift.service.LogEntry apply( LogEntry input)
             {
                 return new com.facebook.swift.service.LogEntry(input.category, input.message);
             }

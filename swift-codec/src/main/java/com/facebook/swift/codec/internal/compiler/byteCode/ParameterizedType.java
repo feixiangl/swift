@@ -19,11 +19,11 @@ import com.google.common.base.Function;
 import com.google.common.base.Predicate;
 import com.google.common.collect.ImmutableList;
 
-import javax.annotation.Nullable;
-import javax.annotation.concurrent.Immutable;
+
+
 import java.util.List;
 
-@Immutable
+
 public class ParameterizedType
 {
     public static ParameterizedType type(String className)
@@ -234,7 +234,7 @@ public class ParameterizedType
         return new Function<Class<?>, ParameterizedType>()
         {
             @Override
-            public ParameterizedType apply(@Nullable Class<?> input)
+            public ParameterizedType apply( Class<?> input)
             {
                 return new ParameterizedType(input);
             }

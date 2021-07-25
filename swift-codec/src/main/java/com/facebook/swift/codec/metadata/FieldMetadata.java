@@ -21,7 +21,7 @@ import com.google.common.base.Function;
 import com.google.common.base.Optional;
 import com.google.common.collect.ImmutableMap;
 
-import javax.annotation.Nullable;
+
 
 import java.lang.reflect.Type;
 import java.util.Map;
@@ -100,7 +100,7 @@ abstract class FieldMetadata
         this.id = id;
     }
 
-    public @Nullable Boolean isLegacyId()
+    public  Boolean isLegacyId()
     {
         return isLegacyId;
     }
@@ -144,7 +144,7 @@ abstract class FieldMetadata
         return new Function<T, Optional<Short>>()
         {
             @Override
-            public Optional<Short> apply(@Nullable T input)
+            public Optional<Short> apply( T input)
             {
                 if (input == null) {
                     return Optional.absent();
@@ -191,7 +191,7 @@ abstract class FieldMetadata
         return new Function<T, Optional<Boolean>>()
         {
             @Override
-            public Optional<Boolean> apply(@Nullable T input)
+            public Optional<Boolean> apply( T input)
             {
                 if (input == null) {
                     return Optional.absent();
@@ -215,7 +215,7 @@ abstract class FieldMetadata
         return new Function<T, String>()
         {
             @Override
-            public String apply(@Nullable T input)
+            public String apply( T input)
             {
                 if (input == null) {
                     return null;
@@ -230,7 +230,7 @@ abstract class FieldMetadata
         return new Function<T, String>()
         {
             @Override
-            public String apply(@Nullable T input)
+            public String apply( T input)
             {
                 if (input == null) {
                     return null;
@@ -252,7 +252,7 @@ abstract class FieldMetadata
         return new Function<T, String>()
         {
             @Override
-            public String apply(@Nullable T input)
+            public String apply( T input)
             {
                 if (input == null) {
                     return null;
@@ -266,9 +266,9 @@ abstract class FieldMetadata
     {
         return new Function<T, Requiredness>()
         {
-            @Nullable
+
             @Override
-            public Requiredness apply(@Nullable T input)
+            public Requiredness apply( T input)
             {
                 return input.getRequiredness();
             }
@@ -285,7 +285,7 @@ abstract class FieldMetadata
         this.requiredness = requiredness;
     }
 
-    public @Nullable Boolean isRecursiveReference()
+    public  Boolean isRecursiveReference()
     {
         return isRecursiveReference;
     }

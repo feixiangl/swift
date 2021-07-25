@@ -31,7 +31,7 @@ import com.google.common.collect.Maps;
 
 import org.apache.thrift.protocol.TProtocol;
 
-import javax.annotation.concurrent.Immutable;
+
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.Map;
@@ -43,7 +43,7 @@ import static com.google.common.collect.Iterables.getOnlyElement;
 
 import static java.lang.String.format;
 
-@Immutable
+
 public class ReflectionThriftUnionCodec<T> extends AbstractReflectionThriftCodec<T>
 {
     private final Map<Short, ThriftFieldMetadata> metadataMap;

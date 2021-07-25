@@ -38,7 +38,7 @@ import org.apache.thrift.protocol.TProtocol;
 import org.apache.thrift.protocol.TProtocolUtil;
 import org.apache.thrift.protocol.TType;
 
-import javax.annotation.concurrent.ThreadSafe;
+
 
 import java.util.List;
 import java.util.Map;
@@ -50,7 +50,7 @@ import static org.apache.thrift.TApplicationException.UNKNOWN_METHOD;
 /**
  * NiftyProcessor that wraps a Thrift service.
  */
-@ThreadSafe
+
 public class ThriftServiceProcessor implements NiftyProcessor
 {
     private static final Logger LOG = Logger.get(ThriftServiceProcessor.class);

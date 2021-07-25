@@ -28,7 +28,7 @@ import com.google.inject.Inject;
 import io.airlift.log.Logger;
 import org.apache.thrift.TException;
 
-import javax.annotation.Nullable;
+
 
 import java.util.concurrent.Executor;
 import java.util.concurrent.atomic.AtomicInteger;
@@ -96,9 +96,9 @@ public final class AsyncClientWorker extends AbstractClientWorker
 
             ListenableFuture<ClientWrapper> wrapperFuture = Futures.transform(clientFuture, new Function<AsyncLoadTest, ClientWrapper>()
             {
-                @Nullable
+
                 @Override
-                public ClientWrapper apply(@Nullable AsyncLoadTest client)
+                public ClientWrapper apply( AsyncLoadTest client)
                 {
                     return new ClientWrapper(clientManager, client, config.operationsPerConnection);
                 }
@@ -337,7 +337,7 @@ public final class AsyncClientWorker extends AbstractClientWorker
         }
 
         @Override
-        public void onSuccess(@Nullable Object result)
+        public void onSuccess( Object result)
         {
             clientWrapper.recordResponseReceived();
             if (clientWrapper.isFinishedReceivingResponses())

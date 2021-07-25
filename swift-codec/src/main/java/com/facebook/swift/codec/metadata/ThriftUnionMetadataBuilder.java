@@ -23,7 +23,7 @@ import com.google.common.base.Optional;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
 
-import javax.annotation.concurrent.NotThreadSafe;
+
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
@@ -37,7 +37,7 @@ import static com.facebook.swift.codec.ThriftField.Requiredness;
 import static com.facebook.swift.codec.metadata.FieldKind.THRIFT_UNION_ID;
 import static com.facebook.swift.codec.metadata.ReflectionHelper.findAnnotatedMethods;
 
-@NotThreadSafe
+
 public class ThriftUnionMetadataBuilder
     extends AbstractThriftMetadataBuilder
 {

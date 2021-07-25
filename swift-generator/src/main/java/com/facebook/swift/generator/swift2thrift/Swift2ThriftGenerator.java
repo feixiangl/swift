@@ -46,7 +46,7 @@ import io.airlift.log.Logger;
 import org.stringtemplate.v4.AutoIndentWriter;
 import org.stringtemplate.v4.ST;
 
-import javax.annotation.Nullable;
+
 
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -213,7 +213,7 @@ public class Swift2ThriftGenerator
         SuccessAndResult<ThriftType> output = topologicalSort(thriftTypes, new Predicate<ThriftType>()
         {
             @Override
-            public boolean apply(@Nullable ThriftType t)
+            public boolean apply( ThriftType t)
             {
                 ThriftProtocolType proto = checkNotNull(t).getProtocolType();
                 if (proto == ThriftProtocolType.ENUM || proto == ThriftProtocolType.STRUCT) {
@@ -241,7 +241,7 @@ public class Swift2ThriftGenerator
         SuccessAndResult<ThriftServiceMetadata> output = topologicalSort(thriftServices, new Predicate<ThriftServiceMetadata>()
         {
             @Override
-            public boolean apply(@Nullable ThriftServiceMetadata thriftServiceMetadata)
+            public boolean apply( ThriftServiceMetadata thriftServiceMetadata)
             {
                 return verifyService(thriftServiceMetadata, true);
             }

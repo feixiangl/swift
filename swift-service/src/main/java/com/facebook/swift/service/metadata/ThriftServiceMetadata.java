@@ -22,15 +22,15 @@ import com.google.common.base.Function;
 import com.google.common.base.Preconditions;
 import com.google.common.collect.*;
 
-import javax.annotation.Nullable;
-import javax.annotation.concurrent.Immutable;
+
+
 import java.lang.reflect.Method;
 import java.util.*;
 
 import static com.facebook.swift.codec.metadata.ReflectionHelper.findAnnotatedMethods;
 import static com.facebook.swift.codec.metadata.ReflectionHelper.getEffectiveClassAnnotations;
 
-@Immutable
+
 public class ThriftServiceMetadata
 {
     private final String name;
@@ -56,9 +56,9 @@ public class ThriftServiceMetadata
         ImmutableMap.Builder<String, ThriftMethodMetadata> builder = ImmutableMap.builder();
 
         Function<ThriftMethodMetadata, String> methodMetadataNamer = new Function<ThriftMethodMetadata, String>() {
-            @Nullable
+
             @Override
-            public String apply(@Nullable ThriftMethodMetadata methodMetadata)
+            public String apply( ThriftMethodMetadata methodMetadata)
             {
                 return methodMetadata.getName();
             }

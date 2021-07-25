@@ -24,11 +24,11 @@ import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
 import java.util.Map;
 
-import javax.annotation.concurrent.Immutable;
+
 
 import static java.lang.String.format;
 
-@Immutable
+
 public class ThriftEnumMetadata<T extends Enum<T>>
 {
     private final Class<T> enumClass;

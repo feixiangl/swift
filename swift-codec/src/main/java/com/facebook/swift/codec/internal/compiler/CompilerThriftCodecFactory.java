@@ -25,12 +25,12 @@ import com.google.inject.Inject;
 import java.security.AccessController;
 import java.security.PrivilegedAction;
 
-import javax.annotation.concurrent.Immutable;
+
 
 /**
  * Creates Thrift codecs directly in byte code.
  */
-@Immutable
+
 public class CompilerThriftCodecFactory implements ThriftCodecFactory
 {
     private final boolean debug;

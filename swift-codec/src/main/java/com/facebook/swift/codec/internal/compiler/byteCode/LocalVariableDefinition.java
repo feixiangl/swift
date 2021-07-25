@@ -15,9 +15,9 @@
  */
 package com.facebook.swift.codec.internal.compiler.byteCode;
 
-import javax.annotation.concurrent.Immutable;
 
-@Immutable
+
+
 public class LocalVariableDefinition
 {
     private final String name;

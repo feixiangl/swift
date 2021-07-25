@@ -40,7 +40,7 @@ import org.apache.thrift.transport.TSocket;
 import org.jboss.netty.handler.ssl.util.InsecureTrustManagerFactory;
 import org.testng.annotations.Test;
 
-import javax.annotation.Nullable;
+
 import javax.net.ssl.SSLContext;
 import java.io.File;
 import java.io.IOException;
@@ -179,7 +179,7 @@ public class TestThriftSslService
         return Lists.transform(messages, new Function<LogEntry, com.facebook.swift.service.LogEntry>()
         {
             @Override
-            public com.facebook.swift.service.LogEntry apply(@Nullable LogEntry input)
+            public com.facebook.swift.service.LogEntry apply( LogEntry input)
             {
                 return new com.facebook.swift.service.LogEntry(input.category, input.message);
             }

@@ -23,7 +23,7 @@ import java.io.Closeable;
 import java.util.Collection;
 import java.util.List;
 
-import javax.annotation.Nullable;
+
 
 /**
  * Represents a method element of a service. If the name is null, this is a method that does nto represent
@@ -41,12 +41,12 @@ public class MethodContext
     private final List<FieldContext> parameters = Lists.newArrayList();
     private final List<ExceptionContext> exceptions = Lists.newArrayList();
 
-    MethodContext(@Nullable String name, boolean oneway, String javaName, String javaType, String boxedJavaType)
+    MethodContext( String name, boolean oneway, String javaName, String javaType, String boxedJavaType)
     {
         this(name, oneway, javaName, javaType, boxedJavaType, true /* allow async */);
     }
 
-    MethodContext(@Nullable String name, boolean oneway, String javaName, String javaType, String boxedJavaType, boolean allowAsync)
+    MethodContext( String name, boolean oneway, String javaName, String javaType, String boxedJavaType, boolean allowAsync)
     {
         this.name = name;
         this.oneway = oneway;

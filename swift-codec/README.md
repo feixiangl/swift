@@ -88,7 +88,7 @@ automatically matched to a Thrift field (getter or Java field) by name.
 Otherwise, you will need to annotate the parameters with
 `@ThriftField(name = "myName")`.
 
-    @Immutable
+    
     @ThriftStruct
     public class Bonk
     {
@@ -124,7 +124,7 @@ with `@ThriftConstructor` on the builder class.  The builder can use field,
 method and/or constructor injection in addition to injection into the factory
 method itself.
 
-    @Immutable
+    
     @ThriftStruct(builder = Builder.class)
     public class Bonk
     {

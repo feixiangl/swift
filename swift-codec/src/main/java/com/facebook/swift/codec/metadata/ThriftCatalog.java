@@ -33,7 +33,7 @@ import com.google.common.collect.Sets;
 import com.google.common.reflect.TypeToken;
 import com.google.common.util.concurrent.ListenableFuture;
 
-import javax.annotation.concurrent.ThreadSafe;
+
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
@@ -77,7 +77,7 @@ import static java.lang.reflect.Modifier.isStatic;
  * metadata extraction can be very expensive, and only single instance of the catalog should be
  * created.
  */
-@ThreadSafe
+
 public class ThriftCatalog
 {
     private final MetadataErrors.Monitor monitor;

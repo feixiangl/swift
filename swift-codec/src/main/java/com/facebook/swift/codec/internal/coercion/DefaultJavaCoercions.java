@@ -15,10 +15,10 @@
  */
 package com.facebook.swift.codec.internal.coercion;
 
-import javax.annotation.concurrent.Immutable;
+
 import java.nio.ByteBuffer;
 
-@Immutable
+
 public final class DefaultJavaCoercions
 {
     private DefaultJavaCoercions()

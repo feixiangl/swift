@@ -19,13 +19,16 @@ import com.facebook.swift.codec.ThriftProtocolType;
 import com.google.common.base.Preconditions;
 import com.google.common.reflect.TypeParameter;
 import com.google.common.reflect.TypeToken;
+import sun.reflect.generics.reflectiveObjects.ParameterizedTypeImpl;
 
-import javax.annotation.concurrent.Immutable;
 
+
+import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
 import java.nio.ByteBuffer;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Set;
 
 import static com.facebook.swift.codec.ThriftProtocolType.ENUM;
@@ -36,7 +39,7 @@ import static com.google.common.base.Preconditions.checkState;
 /**
  * ThriftType contains all metadata necessary for converting the java type to and from Thrift.
  */
-@Immutable
+
 public class ThriftType
 {
     public static final ThriftType BOOL = new ThriftType(ThriftProtocolType.BOOL, boolean.class);
@@ -306,9 +309,14 @@ public class ThriftType
     @Override
     public int hashCode()
     {
-        int result = protocolType != null ? protocolType.hashCode() : 0;
-        result = 31 * result + (javaType != null ? javaType.hashCode() : 0);
-        return result;
+        long result = protocolType != null ? protocolType.hashCode() : 0;
+        Type structType = Objects.nonNull(this.structMetadata)? this.structMetadata.getStructType() : null;
+        if (Objects.nonNull(structType) && structType instanceof ParameterizedType) {
+            for (Type type : (((ParameterizedTypeImpl) structType).getActualTypeArguments())) {
+                result = 31 * result + type.hashCode();
+            }
+        }
+        return (int) result;
     }
 
     @Override

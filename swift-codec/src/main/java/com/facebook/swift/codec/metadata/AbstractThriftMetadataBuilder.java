@@ -31,8 +31,8 @@ import com.google.common.collect.Multimaps;
 import com.google.common.reflect.TypeToken;
 import com.google.inject.internal.MoreTypes;
 
-import javax.annotation.Nullable;
-import javax.annotation.concurrent.NotThreadSafe;
+
+
 
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Constructor;
@@ -72,7 +72,7 @@ import static com.google.common.collect.Sets.newTreeSet;
 import static java.util.Arrays.asList;
 import static jp.skypencil.guava.stream.GuavaCollectors.toImmutableSet;
 
-@NotThreadSafe
+
 public abstract class AbstractThriftMetadataBuilder
 {
     protected final String structName;
@@ -686,7 +686,7 @@ public abstract class AbstractThriftMetadataBuilder
         Predicate<Requiredness> specificRequiredness = new Predicate<Requiredness>()
         {
             @Override
-            public boolean apply(@Nullable Requiredness input)
+            public boolean apply( Requiredness input)
             {
                 return (input != null) && (input != Requiredness.UNSPECIFIED);
             }

@@ -16,429 +16,649 @@
     under the License.
 
 -->
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
-  <modelVersion>4.0.0</modelVersion>
+    <modelVersion>4.0.0</modelVersion>
 
-  <parent>
-    <groupId>io.airlift</groupId>
-    <artifactId>airbase</artifactId>
-    <version>46</version>
-    <relativePath />
-  </parent>
 
-  <groupId>com.facebook.swift</groupId>
-  <artifactId>swift-root</artifactId>
-  <version>0.23.2-SNAPSHOT</version>
-  <packaging>pom</packaging>
-  <name>${project.artifactId}</name>
-  <description>Annotation based Thrift implementation</description>
+    <groupId>com.facebook.swift</groupId>
+    <artifactId>swift-root</artifactId>
+    <version>0.23.3-rl-SNAPSHOT</version>
+    <packaging>pom</packaging>
+    <name>${project.artifactId}</name>
+    <description>Annotation based Thrift implementation</description>
 
-  <organization>
-    <name>Facebook, Inc.</name>
-  </organization>
+    <organization>
+        <name>Facebook, Inc.</name>
+    </organization>
 
-  <scm>
-    <connection>scm:git:git://github.com/facebook/swift.git</connection>
-    <developerConnection>scm:git:git@github.com:facebook/swift.git</developerConnection>
-    <url>https://github.com/facebook/swift</url>
-    <tag>HEAD</tag>
-  </scm>
+    <scm>
+        <connection>scm:git:git://github.com/facebook/swift.git</connection>
+        <developerConnection>scm:git:git@github.com:facebook/swift.git</developerConnection>
+        <url>https://github.com/facebook/swift</url>
+        <tag>HEAD</tag>
+    </scm>
 
-  <distributionManagement>
-    <site>
-      <id>github-project-site</id>
-      <url>gitsite:git@github.com/facebook/swift.git</url>
-    </site>
-  </distributionManagement>
+    <modules>
+        <module>swift-annotations</module>
+        <module>swift-codec</module>
+        <module>swift-service</module>
+        <module>swift-generator</module>
+        <module>swift-generator-cli</module>
+        <module>swift-load-generator</module>
+        <module>swift2thrift-generator-cli</module>
+    </modules>
 
-  <modules>
-    <module>swift-test-utils</module>
-    <module>swift-annotations</module>
-    <module>swift-codec</module>
-    <module>swift-idl-parser</module>
-    <module>swift-javadoc</module>
-    <module>swift-service</module>
-    <module>swift-generator</module>
-    <module>swift-generator-cli</module>
-    <module>swift-maven-plugin</module>
-    <module>swift-load-generator</module>
-    <module>swift2thrift-generator-cli</module>
-  </modules>
+    <inceptionYear>2012</inceptionYear>
 
-  <inceptionYear>2012</inceptionYear>
+    <developers>
+        <developer>
+            <id>dain</id>
+            <name>Dain Sundstrom</name>
+            <email>dain@fb.com</email>
+        </developer>
+    </developers>
 
-  <developers>
-    <developer>
-      <id>dain</id>
-      <name>Dain Sundstrom</name>
-      <email>dain@fb.com</email>
-    </developer>
-  </developers>
+    <properties>
+        <!-- see http://docs.codehaus.org/display/MAVENUSER/POM+Element+for+Source+File+Encoding -->
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.build.targetJdk>1.8</project.build.targetJdk>
+        <project.report.outputEncoding>UTF-8</project.report.outputEncoding>
+        <project.report.inputEncoding>UTF-8</project.report.inputEncoding>
 
-  <properties>
-    <!-- This actually wants to be fixed -->
-    <air.check.skip-findbugs>true</air.check.skip-findbugs>
-    <air.check.skip-pmd>true</air.check.skip-pmd>
-    <air.check.skip-jacoco>true</air.check.skip-jacoco>
+        <!-- airlift build specific options are prefixed air.build. -->
 
-    <dep.airlift.version>0.119</dep.airlift.version>
-    <dep.antlr.version>3.5.2</dep.antlr.version>
-    <dep.maven-api.version>3.2.5</dep.maven-api.version>
-    <dep.fb.nifty.version>0.23.0</dep.fb.nifty.version>
-  </properties>
+        <!-- Default jvm size for compiler, tests etc. -->
+        <air.build.jvmsize>1024m</air.build.jvmsize>
 
-  <dependencyManagement>
-    <dependencies>
+        <!-- whether a release:perform automatically pushes the created files and tags to -->
+        <!-- the upstream repository. Default is no. -->
+        <air.release.push-changes>false</air.release.push-changes>
 
-      <dependency>
-        <groupId>com.facebook.swift</groupId>
-        <artifactId>swift-test-utils</artifactId>
-        <version>${project.version}</version>
-      </dependency>
+        <!-- define the forkmode for tests. Default is 'once' -->
+        <air.test.fork-mode>once</air.test.fork-mode>
 
-      <dependency>
-        <groupId>com.facebook.swift</groupId>
-        <artifactId>swift-annotations</artifactId>
-        <version>${project.version}</version>
-      </dependency>
+        <!-- define the thread count for parallel tests. -->
+        <air.test.thread-count>1</air.test.thread-count>
 
-      <dependency>
-        <groupId>com.facebook.swift</groupId>
-        <artifactId>swift-codec</artifactId>
-        <version>${project.version}</version>
-      </dependency>
+        <!-- define the parallel mode for tests. Must be 'methods' for TestNG. -->
+        <air.test.parallel/>
 
-      <dependency>
-        <groupId>com.facebook.swift</groupId>
-        <artifactId>swift-idl-parser</artifactId>
-        <version>${project.version}</version>
-      </dependency>
+        <!-- define the JVM timezone to use when running tests. Default is 'UTC. -->
+        <air.test.timezone>UTC</air.test.timezone>
 
-      <dependency>
-        <groupId>com.facebook.swift</groupId>
-        <artifactId>swift-service</artifactId>
-        <version>${project.version}</version>
-      </dependency>
+        <!-- define the JVM size for forked tests. Defaults to build JVM size. -->
+        <air.test.jvmsize>${air.build.jvmsize}</air.test.jvmsize>
 
-      <dependency>
-        <groupId>com.facebook.swift</groupId>
-        <artifactId>swift-generator</artifactId>
-        <version>${project.version}</version>
-      </dependency>
+        <!-- Lint mode for Javadoc. Defaults to 'all'. -->
+        <air.javadoc.lint>all</air.javadoc.lint>
 
-      <dependency>
-        <groupId>org.apache.thrift</groupId>
-        <artifactId>libthrift</artifactId>
-        <version>0.9.3</version>
-      </dependency>
+        <!-- Controls all the checkers run when building the project.            -->
+        <!-- Can be activated with -Dair.check.skip-all=true on the command line. -->
+        <air.check.skip-all>false</air.check.skip-all>
+        <!-- Controls the basic checkers run when building the project.          -->
+        <air.check.skip-basic>${air.check.skip-all}</air.check.skip-basic>
+        <!-- Controls the extended checkers run when building the project.       -->
+        <air.check.skip-extended>${air.check.skip-all}</air.check.skip-extended>
 
-      <dependency>
-        <groupId>org.ow2.asm</groupId>
-        <artifactId>asm-all</artifactId>
-        <version>5.0.4</version>
-      </dependency>
+        <!-- basic checks -->
+        <air.check.skip-enforcer>${air.check.skip-basic}</air.check.skip-enforcer>
+        <air.check.skip-dependency>${air.check.skip-basic}</air.check.skip-dependency>
+        <air.check.skip-duplicate-finder>${air.check.skip-basic}</air.check.skip-duplicate-finder>
+        <air.check.skip-dependency-version-check>${air.check.skip-basic}</air.check.skip-dependency-version-check>
 
-      <dependency>
-        <groupId>com.facebook.nifty</groupId>
-        <artifactId>nifty-core</artifactId>
-        <version>${dep.fb.nifty.version}</version>
-      </dependency>
+        <!-- extended checks -->
+        <air.check.skip-findbugs>${air.check.skip-extended}</air.check.skip-findbugs>
+        <air.check.skip-pmd>${air.check.skip-extended}</air.check.skip-pmd>
+        <air.check.skip-license>${air.check.skip-extended}</air.check.skip-license>
+        <air.check.skip-jacoco>${air.check.skip-extended}</air.check.skip-jacoco>
 
-      <dependency>
-        <groupId>com.facebook.nifty</groupId>
-        <artifactId>nifty-ssl</artifactId>
-        <version>${dep.fb.nifty.version}</version>
-      </dependency>
+        <air.check.fail-all>true</air.check.fail-all>
+        <air.check.fail-basic>${air.check.fail-all}</air.check.fail-basic>
+        <air.check.fail-extended>${air.check.fail-all}</air.check.fail-extended>
 
-      <dependency>
-        <groupId>com.facebook.nifty</groupId>
-        <artifactId>nifty-client</artifactId>
-        <version>${dep.fb.nifty.version}</version>
-      </dependency>
+        <!-- basic checks -->
+        <air.check.fail-enforcer>${air.check.fail-basic}</air.check.fail-enforcer>
+        <air.check.fail-dependency>${air.check.fail-basic}</air.check.fail-dependency>
+        <air.check.fail-duplicate-finder>${air.check.fail-basic}</air.check.fail-duplicate-finder>
+        <air.check.fail-dependency-version-check>${air.check.fail-basic}</air.check.fail-dependency-version-check>
 
-      <dependency>
-        <groupId>io.airlift</groupId>
-        <artifactId>jmx</artifactId>
-        <version>${dep.airlift.version}</version>
-      </dependency>
+        <!-- extended checks -->
+        <air.check.fail-findbugs>${air.check.fail-extended}</air.check.fail-findbugs>
+        <air.check.fail-pmd>${air.check.fail-extended}</air.check.fail-pmd>
+        <air.check.fail-license>${air.check.fail-extended}</air.check.fail-license>
 
-      <dependency>
-        <groupId>io.airlift</groupId>
-        <artifactId>configuration</artifactId>
-        <version>${dep.airlift.version}</version>
-      </dependency>
+        <!-- minimum maven version to build -->
+        <air.maven.version>3.2.3</air.maven.version>
 
-      <dependency>
-        <groupId>io.airlift</groupId>
-        <artifactId>stats</artifactId>
-        <version>${dep.airlift.version}</version>
-      </dependency>
+        <!-- minimum Java version to build -->
+        <air.java.version>${project.build.targetJdk}</air.java.version>
 
-      <dependency>
-        <groupId>io.airlift</groupId>
-        <artifactId>units</artifactId>
-        <version>${dep.airlift.version}</version>
-      </dependency>
+        <!-- In Multimodule builds, override this to point at the parent directory for e.g. the license resources. -->
+        <!-- See http://stackoverflow.com/questions/1012402/maven2-property-that-indicates-the-parent-directory    -->
+        <air.main.basedir>${project.basedir}</air.main.basedir>
 
-      <dependency>
-        <groupId>io.airlift</groupId>
-        <artifactId>bootstrap</artifactId>
-        <version>${dep.airlift.version}</version>
-      </dependency>
+        <!-- Plugin versions used in multiple places -->
+        <dep.plugin.scm.version>1.8.1</dep.plugin.scm.version>
 
-      <dependency>
-        <groupId>io.airlift</groupId>
-        <artifactId>node</artifactId>
-        <version>${dep.airlift.version}</version>
-      </dependency>
+        <!-- Packaging for the tarball deployment -->
+        <dep.packaging.version>0.91</dep.packaging.version>
 
-      <dependency>
-        <groupId>io.airlift</groupId>
-        <artifactId>log</artifactId>
-        <version>${dep.airlift.version}</version>
-      </dependency>
+        <!-- Dependency versions that should be the same everywhere. -->
+        <dep.guice.version>4.0</dep.guice.version>
+        <dep.guava.version>21.0</dep.guava.version>
+        <dep.slf4j.version>1.7.12</dep.slf4j.version>
+        <dep.logback.version>1.0.13</dep.logback.version>
+        <dep.javax-inject.version>1</dep.javax-inject.version>
+        <dep.javax-validation.version>1.1.0.Final</dep.javax-validation.version>
+        <dep.javax-servlet.version>3.1.0</dep.javax-servlet.version>
+        <dep.apache-bval.version>0.5</dep.apache-bval.version>
+        <dep.jackson.version>2.4.4</dep.jackson.version>
+        <dep.jersey.version>2.12</dep.jersey.version>
+        <dep.jetty.version>9.2.11.v20150529</dep.jetty.version>
+        <dep.jmxutils.version>1.18</dep.jmxutils.version>
+        <dep.cglib.version>2.2.2</dep.cglib.version>
+        <dep.joda.version>2.8.2</dep.joda.version>
+        <dep.findbugs-annotations.version>2.0.3</dep.findbugs-annotations.version>
+        <dep.testng.version>6.9.6</dep.testng.version>
+        <dep.hamcrest.version>1.3</dep.hamcrest.version>
+        <dep.mockito.version>1.9.5</dep.mockito.version>
+        <dep.objenesis.version>1.3</dep.objenesis.version>
+        <dep.slice.version>0.10</dep.slice.version>
+        <dep.jmh.version>1.9.3</dep.jmh.version>
 
-      <dependency>
-        <groupId>io.airlift</groupId>
-        <artifactId>testing</artifactId>
-        <version>${dep.airlift.version}</version>
-      </dependency>
+        <!-- license headers -->
+        <air.license.owner>${project.organization.name}</air.license.owner>
+        <air.license.default-value>Copyright (C) ${project.inceptionYear} ${air.license.owner}
+        </air.license.default-value>
+        <air.license.ensure-match>Copyright \(C\) \d{4} .+</air.license.ensure-match>
 
-      <dependency>
-        <groupId>io.netty</groupId>
-        <artifactId>netty</artifactId>
-        <version>3.10.5.Final</version>
-      </dependency>
+        <!-- This actually wants to be fixed -->
+        <air.check.skip-pmd>true</air.check.skip-pmd>
+        <air.check.skip-jacoco>true</air.check.skip-jacoco>
 
-      <dependency>
-        <groupId>com.thoughtworks.paranamer</groupId>
-        <artifactId>paranamer</artifactId>
-        <version>2.8</version>
-      </dependency>
+        <dep.airlift.version>0.119</dep.airlift.version>
+        <dep.antlr.version>3.5.2</dep.antlr.version>
+        <dep.maven-api.version>3.2.5</dep.maven-api.version>
+        <dep.fb.nifty.version>0.23.0</dep.fb.nifty.version>
+        <project.version>0.23.3-rl-SNAPSHOT</project.version>
+    </properties>
 
-      <dependency>
-        <groupId>org.apache.httpcomponents</groupId>
-        <artifactId>httpclient</artifactId>
-        <version>4.4.1</version>
-      </dependency>
+    <dependencyManagement>
+        <dependencies>
 
-      <dependency>
-        <groupId>org.apache.httpcomponents</groupId>
-        <artifactId>httpcore</artifactId>
-        <version>4.4.1</version>
-      </dependency>
+            <dependency>
+                <groupId>com.facebook.swift</groupId>
+                <artifactId>swift-annotations</artifactId>
+                <version>${project.version}</version>
+            </dependency>
 
-      <!-- provides helpers for using Guava with Java 8 streams -->
-      <dependency>
-        <groupId>jp.skypencil.guava</groupId>
-        <artifactId>helper</artifactId>
-        <version>1.0.1</version>
-      </dependency>
+            <dependency>
+                <groupId>com.facebook.swift</groupId>
+                <artifactId>swift-codec</artifactId>
+                <version>${project.version}</version>
+            </dependency>
 
-      <dependency>
-        <groupId>org.antlr</groupId>
-        <artifactId>antlr-runtime</artifactId>
-        <version>${dep.antlr.version}</version>
-      </dependency>
+            <dependency>
+                <groupId>com.facebook.swift</groupId>
+                <artifactId>swift-idl-parser</artifactId>
+                <version>0.23.1</version>
+            </dependency>
 
-      <dependency>
-        <groupId>org.antlr</groupId>
-        <artifactId>stringtemplate</artifactId>
-        <version>4.0.2</version>
-      </dependency>
+            <dependency>
+                <groupId>com.facebook.swift</groupId>
+                <artifactId>swift-service</artifactId>
+                <version>${project.version}</version>
+            </dependency>
 
-      <!-- maven -->
-      <dependency>
-        <groupId>org.apache.maven</groupId>
-        <artifactId>maven-plugin-api</artifactId>
-        <version>${dep.maven-api.version}</version>
-      </dependency>
+            <dependency>
+                <groupId>com.facebook.swift</groupId>
+                <artifactId>swift-generator</artifactId>
+                <version>${project.version}</version>
+            </dependency>
 
-      <dependency>
-        <groupId>org.apache.maven</groupId>
-        <artifactId>maven-model</artifactId>
-        <version>${dep.maven-api.version}</version>
-      </dependency>
+            <dependency>
+                <groupId>org.apache.thrift</groupId>
+                <artifactId>libthrift</artifactId>
+                <version>0.9.3</version>
+            </dependency>
 
-      <dependency>
-        <groupId>org.apache.maven</groupId>
-        <artifactId>maven-artifact</artifactId>
-        <version>${dep.maven-api.version}</version>
-      </dependency>
+            <dependency>
+                <groupId>org.ow2.asm</groupId>
+                <artifactId>asm-all</artifactId>
+                <version>5.0.4</version>
+            </dependency>
 
-      <dependency>
-        <groupId>org.apache.maven</groupId>
-        <artifactId>maven-core</artifactId>
-        <version>${dep.maven-api.version}</version>
-      </dependency>
+            <dependency>
+                <groupId>javax.servlet</groupId>
+                <artifactId>javax.servlet-api</artifactId>
+                <version>${dep.javax-servlet.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>javax.validation</groupId>
+                <artifactId>validation-api</artifactId>
+                <version>${dep.javax-validation.version}</version>
+            </dependency>
 
-      <dependency>
-        <groupId>org.apache.maven.plugin-tools</groupId>
-        <artifactId>maven-plugin-annotations</artifactId>
-        <version>3.4</version>
-      </dependency>
+            <!-- Testing -->
+            <dependency>
+                <groupId>org.testng</groupId>
+                <artifactId>testng</artifactId>
+                <version>${dep.testng.version}</version>
+                <exclusions>
+                    <exclusion>
+                        <groupId>junit</groupId>
+                        <artifactId>junit</artifactId>
+                    </exclusion>
+                    <exclusion>
+                        <groupId>com.google.inject</groupId>
+                        <artifactId>guice</artifactId>
+                    </exclusion>
+                </exclusions>
+            </dependency>
 
-      <dependency>
-        <groupId>org.codehaus.plexus</groupId>
-        <artifactId>plexus-utils</artifactId>
-        <version>3.0.22</version>
-      </dependency>
+            <!-- jetty -->
+            <dependency>
+                <groupId>org.eclipse.jetty</groupId>
+                <artifactId>jetty-server</artifactId>
+                <version>${dep.jetty.version}</version>
+                <exclusions>
+                    <exclusion>
+                        <groupId>org.eclipse.jetty.orbit</groupId>
+                        <artifactId>javax.servlet</artifactId>
+                    </exclusion>
+                </exclusions>
+            </dependency>
 
-      <dependency>
-        <groupId>org.easytesting</groupId>
-        <artifactId>fest-assert</artifactId>
-        <version>1.4</version>
-      </dependency>
+            <dependency>
+                <groupId>org.eclipse.jetty</groupId>
+                <artifactId>jetty-servlet</artifactId>
+                <version>${dep.jetty.version}</version>
+            </dependency>
 
-      <dependency>
-        <groupId>args4j</groupId>
-        <artifactId>args4j</artifactId>
-        <version>2.0.22</version>
-      </dependency>
+            <dependency>
+                <groupId>org.eclipse.jetty</groupId>
+                <artifactId>jetty-util</artifactId>
+                <version>${dep.jetty.version}</version>
+            </dependency>
 
-      <dependency>
-        <groupId>com.beust</groupId>
-        <artifactId>jcommander</artifactId>
-        <version>1.48</version>
-      </dependency>
+            <dependency>
+                <groupId>org.eclipse.jetty</groupId>
+                <artifactId>jetty-servlets</artifactId>
+                <version>${dep.jetty.version}</version>
+            </dependency>
 
-      <dependency>
-        <groupId>io.takari.maven.plugins</groupId>
-        <artifactId>takari-plugin-testing</artifactId>
-        <version>2.2.0</version>
-      </dependency>
+            <dependency>
+                <groupId>org.eclipse.jetty</groupId>
+                <artifactId>jetty-security</artifactId>
+                <version>${dep.jetty.version}</version>
+            </dependency>
 
-      <dependency>
-        <groupId>io.takari.maven.plugins</groupId>
-        <artifactId>takari-plugin-integration-testing</artifactId>
-        <version>2.2.0</version>
-        <type>pom</type>
-      </dependency>
+            <dependency>
+                <groupId>org.eclipse.jetty</groupId>
+                <artifactId>jetty-jmx</artifactId>
+                <version>${dep.jetty.version}</version>
+            </dependency>
 
-      <dependency>
-        <groupId>junit</groupId>
-        <artifactId>junit</artifactId>
-        <version>4.12</version>
-      </dependency>
-    </dependencies>
-  </dependencyManagement>
+            <dependency>
+                <groupId>org.eclipse.jetty</groupId>
+                <artifactId>jetty-http</artifactId>
+                <version>${dep.jetty.version}</version>
+            </dependency>
 
-  <build>
-    <pluginManagement>
-      <plugins>
-        <!--This plugin's configuration is used to store Eclipse m2e settings only. It has no influence on the Maven build itself.-->
-        <plugin>
-          <groupId>org.eclipse.m2e</groupId>
-          <artifactId>lifecycle-mapping</artifactId>
-          <version>1.0.0</version>
-          <configuration>
-            <lifecycleMappingMetadata>
-              <pluginExecutions>
-                <pluginExecution>
-                  <pluginExecutionFilter>
-                    <groupId>org.codehaus.plexus</groupId>
-                    <artifactId>plexus-maven-plugin</artifactId>
-                    <versionRange>[0,)</versionRange>
-                    <goals>
-                      <goal>descriptor</goal>
-                    </goals>
-                  </pluginExecutionFilter>
-                  <action>
-                    <ignore />
-                  </action>
-                </pluginExecution>
-              </pluginExecutions>
-            </lifecycleMappingMetadata>
-          </configuration>
-        </plugin>
+            <dependency>
+                <groupId>org.eclipse.jetty</groupId>
+                <artifactId>jetty-client</artifactId>
+                <version>${dep.jetty.version}</version>
+            </dependency>
 
-        <plugin>
-          <groupId>org.antlr</groupId>
-          <artifactId>antlr3-maven-plugin</artifactId>
-          <version>${dep.antlr.version}</version>
-          <executions>
-            <execution>
-              <id>default</id>
-              <phase>generate-sources</phase>
-              <goals>
-                <goal>antlr</goal>
-              </goals>
-            </execution>
-          </executions>
-        </plugin>
+            <dependency>
+                <groupId>org.eclipse.jetty</groupId>
+                <artifactId>jetty-io</artifactId>
+                <version>${dep.jetty.version}</version>
+            </dependency>
 
-        <plugin>
-          <groupId>org.codehaus.plexus</groupId>
-          <artifactId>plexus-maven-plugin</artifactId>
-          <version>1.3.8</version>
-          <executions>
-            <execution>
-              <goals>
-                <goal>descriptor</goal>
-              </goals>
-            </execution>
-          </executions>
-        </plugin>
+            <!-- logging -->
+            <dependency>
+                <groupId>org.slf4j</groupId>
+                <artifactId>slf4j-api</artifactId>
+                <version>${dep.slf4j.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.slf4j</groupId>
+                <artifactId>slf4j-nop</artifactId>
+                <version>${dep.slf4j.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.slf4j</groupId>
+                <artifactId>slf4j-simple</artifactId>
+                <version>${dep.slf4j.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.slf4j</groupId>
+                <artifactId>slf4j-ext</artifactId>
+                <version>${dep.slf4j.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.slf4j</groupId>
+                <artifactId>jcl-over-slf4j</artifactId>
+                <version>${dep.slf4j.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.slf4j</groupId>
+                <artifactId>jul-to-slf4j</artifactId>
+                <version>${dep.slf4j.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.slf4j</groupId>
+                <artifactId>log4j-over-slf4j</artifactId>
+                <version>${dep.slf4j.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.slf4j</groupId>
+                <artifactId>slf4j-jdk14</artifactId>
+                <version>${dep.slf4j.version}</version>
+            </dependency>
 
-        <plugin>
-          <groupId>org.apache.maven.plugins</groupId>
-          <artifactId>maven-plugin-plugin</artifactId>
-          <version>3.4</version>
-          <executions>
-            <execution>
-              <id>help-mojo</id>
-              <goals>
-                <goal>helpmojo</goal>
-              </goals>
-            </execution>
-          </executions>
-        </plugin>
+            <dependency>
+                <groupId>ch.qos.logback</groupId>
+                <artifactId>logback-core</artifactId>
+                <version>${dep.logback.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>ch.qos.logback</groupId>
+                <artifactId>logback-classic</artifactId>
+                <version>${dep.logback.version}</version>
+            </dependency>
 
-        <plugin>
-          <groupId>org.apache.maven.plugins</groupId>
-          <artifactId>maven-shade-plugin</artifactId>
-          <version>2.3</version>
-          <executions>
-            <execution>
-              <phase>package</phase>
-              <goals>
-                <goal>shade</goal>
-              </goals>
-            </execution>
-          </executions>
-        </plugin>
+            <dependency>
+                <groupId>org.weakref</groupId>
+                <artifactId>jmxutils</artifactId>
+                <version>${dep.jmxutils.version}</version>
+            </dependency>
 
-        <plugin>
-          <groupId>io.takari.maven.plugins</groupId>
-          <artifactId>takari-lifecycle-plugin</artifactId>
-          <version>1.11.3</version>
-        </plugin>
+            <dependency>
+                <groupId>javax.inject</groupId>
+                <artifactId>javax.inject</artifactId>
+                <version>${dep.javax-inject.version}</version>
+            </dependency>
 
-        <plugin>
-          <groupId>org.apache.maven.plugins</groupId>
-          <artifactId>maven-surefire-plugin</artifactId>
-          <configuration>
-            <redirectTestOutputToFile>true</redirectTestOutputToFile>
-          </configuration>
-        </plugin>
-      </plugins>
-    </pluginManagement>
+            <dependency>
+                <groupId>com.facebook.nifty</groupId>
+                <artifactId>nifty-core</artifactId>
+                <version>${dep.fb.nifty.version}</version>
+            </dependency>
 
-    <plugins>
-      <plugin>
-        <groupId>com.mycila</groupId>
-        <artifactId>license-maven-plugin</artifactId>
-        <configuration>
-          <properties>
-            <inceptionYear>${project.inceptionYear}</inceptionYear>
-            <year>2013</year>
-          </properties>
-          <excludes combine.children="append">
-            <exclude>**/*.g</exclude>
-          </excludes>
-        </configuration>
-      </plugin>
-    </plugins>
-  </build>
+            <dependency>
+                <groupId>com.facebook.nifty</groupId>
+                <artifactId>nifty-ssl</artifactId>
+                <version>${dep.fb.nifty.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.facebook.nifty</groupId>
+                <artifactId>nifty-client</artifactId>
+                <version>${dep.fb.nifty.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>io.airlift</groupId>
+                <artifactId>jmx</artifactId>
+                <version>${dep.airlift.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>io.airlift</groupId>
+                <artifactId>configuration</artifactId>
+                <version>${dep.airlift.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>io.airlift</groupId>
+                <artifactId>stats</artifactId>
+                <version>${dep.airlift.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>io.airlift</groupId>
+                <artifactId>units</artifactId>
+                <version>${dep.airlift.version}</version>
+            </dependency>
+
+            <!-- Google Guice -->
+            <dependency>
+                <groupId>com.google.inject</groupId>
+                <artifactId>guice</artifactId>
+                <version>${dep.guice.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.google.inject.extensions</groupId>
+                <artifactId>guice-servlet</artifactId>
+                <version>${dep.guice.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.google.inject.extensions</groupId>
+                <artifactId>guice-assistedinject</artifactId>
+                <version>${dep.guice.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.google.inject.extensions</groupId>
+                <artifactId>guice-multibindings</artifactId>
+                <version>${dep.guice.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.google.inject.extensions</groupId>
+                <artifactId>guice-throwingproviders</artifactId>
+                <version>${dep.guice.version}</version>
+            </dependency>
+            <!-- guava -->
+            <dependency>
+                <groupId>com.google.guava</groupId>
+                <artifactId>guava</artifactId>
+                <version>${dep.guava.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>io.airlift</groupId>
+                <artifactId>bootstrap</artifactId>
+                <version>${dep.airlift.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>io.airlift</groupId>
+                <artifactId>node</artifactId>
+                <version>${dep.airlift.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>io.airlift</groupId>
+                <artifactId>log</artifactId>
+                <version>${dep.airlift.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>io.airlift</groupId>
+                <artifactId>testing</artifactId>
+                <version>${dep.airlift.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>io.netty</groupId>
+                <artifactId>netty</artifactId>
+                <version>3.10.5.Final</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.thoughtworks.paranamer</groupId>
+                <artifactId>paranamer</artifactId>
+                <version>2.8</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.apache.httpcomponents</groupId>
+                <artifactId>httpclient</artifactId>
+                <version>4.4.1</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.apache.httpcomponents</groupId>
+                <artifactId>httpcore</artifactId>
+                <version>4.4.1</version>
+            </dependency>
+
+            <!-- provides helpers for using Guava with Java 8 streams -->
+            <dependency>
+                <groupId>jp.skypencil.guava</groupId>
+                <artifactId>helper</artifactId>
+                <version>1.0.1</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.antlr</groupId>
+                <artifactId>antlr-runtime</artifactId>
+                <version>${dep.antlr.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.antlr</groupId>
+                <artifactId>stringtemplate</artifactId>
+                <version>4.0.2</version>
+            </dependency>
+
+            <!-- maven -->
+            <dependency>
+                <groupId>org.apache.maven</groupId>
+                <artifactId>maven-plugin-api</artifactId>
+                <version>${dep.maven-api.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.apache.maven</groupId>
+                <artifactId>maven-model</artifactId>
+                <version>${dep.maven-api.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.apache.maven</groupId>
+                <artifactId>maven-artifact</artifactId>
+                <version>${dep.maven-api.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.apache.maven</groupId>
+                <artifactId>maven-core</artifactId>
+                <version>${dep.maven-api.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.apache.maven.plugin-tools</groupId>
+                <artifactId>maven-plugin-annotations</artifactId>
+                <version>3.4</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.codehaus.plexus</groupId>
+                <artifactId>plexus-utils</artifactId>
+                <version>3.0.22</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.easytesting</groupId>
+                <artifactId>fest-assert</artifactId>
+                <version>1.4</version>
+            </dependency>
+
+            <dependency>
+                <groupId>args4j</groupId>
+                <artifactId>args4j</artifactId>
+                <version>2.0.22</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.beust</groupId>
+                <artifactId>jcommander</artifactId>
+                <version>1.48</version>
+            </dependency>
+
+            <dependency>
+                <groupId>io.takari.maven.plugins</groupId>
+                <artifactId>takari-plugin-testing</artifactId>
+                <version>2.2.0</version>
+            </dependency>
+
+            <dependency>
+                <groupId>io.takari.maven.plugins</groupId>
+                <artifactId>takari-plugin-integration-testing</artifactId>
+                <version>2.2.0</version>
+                <type>pom</type>
+            </dependency>
+
+            <dependency>
+                <groupId>junit</groupId>
+                <artifactId>junit</artifactId>
+                <version>4.12</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+    <build>
+        <pluginManagement>
+            <plugins>
+
+
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-plugin-plugin</artifactId>
+                    <version>3.4</version>
+                    <executions>
+                    </executions>
+                </plugin>
+
+
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-surefire-plugin</artifactId>
+                    <configuration>
+                        <redirectTestOutputToFile>true</redirectTestOutputToFile>
+                    </configuration>
+                </plugin>
+
+            </plugins>
+        </pluginManagement>
+
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <configuration>
+                    <skipTests>false</skipTests>
+                    <includes>
+                        <include>**/*Tests.java</include>
+                        <include>**/*Test.java</include>
+                    </includes>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>8</source>
+                    <target>8</target>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+    <distributionManagement>
+        <!--正式版本-->
+        <repository>
+            <id>rdc-releases</id>
+            <url>https://repo.rdc.aliyun.com/repository/119556-release-7mmGUM/</url>
+        </repository>
+        <snapshotRepository>
+            <id>rdc-snapshots</id>
+            <url>https://repo.rdc.aliyun.com/repository/119556-snapshot-uQLJw1/</url>
+        </snapshotRepository>
+    </distributionManagement>
 </project>

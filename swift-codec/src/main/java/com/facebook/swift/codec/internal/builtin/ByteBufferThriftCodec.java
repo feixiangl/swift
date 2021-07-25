@@ -20,10 +20,10 @@ import com.facebook.swift.codec.metadata.ThriftType;
 import com.google.common.base.Preconditions;
 import org.apache.thrift.protocol.TProtocol;
 
-import javax.annotation.concurrent.Immutable;
+
 import java.nio.ByteBuffer;
 
-@Immutable
+
 public class ByteBufferThriftCodec implements ThriftCodec<ByteBuffer>
 {
     @Override

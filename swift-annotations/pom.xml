@@ -23,12 +23,13 @@
   <parent>
     <groupId>com.facebook.swift</groupId>
     <artifactId>swift-root</artifactId>
-    <version>0.23.2-SNAPSHOT</version>
+    <version>0.23.3-rl-SNAPSHOT</version>
     <relativePath>../pom.xml</relativePath>
   </parent>
 
   <artifactId>swift-annotations</artifactId>
   <packaging>jar</packaging>
+  <version>0.23.3-rl-SNAPSHOT</version>
   <name>${project.artifactId}</name>
   <description>Annotations for use in Swift interfaces and types</description>
 

@@ -18,9 +18,9 @@ package com.facebook.swift.codec.internal.compiler.byteCode;
 import com.google.common.base.Function;
 import com.google.common.base.Preconditions;
 
-import javax.annotation.concurrent.Immutable;
 
-@Immutable
+
+
 public class NamedParameterDefinition
 {
     public static NamedParameterDefinition arg(Class<?> type)

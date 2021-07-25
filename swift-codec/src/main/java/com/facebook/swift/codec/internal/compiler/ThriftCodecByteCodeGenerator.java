@@ -47,24 +47,20 @@ import com.google.common.base.Throwables;
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.Lists;
 import com.google.common.reflect.TypeToken;
-import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
+
 import org.apache.thrift.protocol.TProtocol;
 import org.objectweb.asm.ClassReader;
 import org.objectweb.asm.ClassWriter;
 import org.objectweb.asm.util.CheckClassAdapter;
+import sun.reflect.generics.reflectiveObjects.ParameterizedTypeImpl;
 
-import javax.annotation.concurrent.NotThreadSafe;
 
 import java.io.PrintWriter;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Method;
 import java.lang.reflect.Type;
 import java.nio.ByteBuffer;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-import java.util.TreeMap;
+import java.util.*;
 
 import static com.facebook.swift.codec.ThriftProtocolType.BINARY;
 import static com.facebook.swift.codec.ThriftProtocolType.BOOL;
@@ -94,7 +90,7 @@ import static com.facebook.swift.codec.metadata.FieldKind.THRIFT_UNION_ID;
 import static com.google.common.collect.Iterables.getOnlyElement;
 import static java.lang.String.format;
 
-@NotThreadSafe
+
 public class ThriftCodecByteCodeGenerator<T>
 {
     private static final String PACKAGE = "$wift";
@@ -120,7 +116,6 @@ public class ThriftCodecByteCodeGenerator<T>
     private final ThriftCodec<T> thriftCodec;
 
     @SuppressWarnings("unchecked")
-    @SuppressFBWarnings("DM_DEFAULT_ENCODING")
     public ThriftCodecByteCodeGenerator(
             ThriftCodecManager codecManager,
             ThriftStructMetadata metadata,
@@ -1093,7 +1088,20 @@ public class ThriftCodecByteCodeGenerator<T>
 
     private ParameterizedType toCodecType(ThriftStructMetadata metadata)
     {
-        return type(PACKAGE + "/" + type(metadata.getStructClass()).getClassName() + "Codec");
+        String subFix = "";
+        Type structType = metadata.getStructType();
+        if (Objects.nonNull(structType) && structType instanceof java.lang.reflect.ParameterizedType) {
+            for (Type type : (((ParameterizedTypeImpl) structType).getActualTypeArguments())) {
+                if ("".equals(subFix)) {
+                    subFix += ((Class) type).getSimpleName();
+
+                } else {
+                    subFix += "/" + ((Class) type).getSimpleName();
+
+                }
+            }
+        }
+        return type(PACKAGE + "/" + type(metadata.getStructClass()).getClassName() + "Codec" + subFix);
     }
 
     private static class ConstructorParameters

@@ -20,13 +20,13 @@ import com.facebook.swift.codec.metadata.ThriftType;
 import com.facebook.swift.codec.metadata.TypeCoercion;
 import org.apache.thrift.protocol.TProtocol;
 
-import javax.annotation.concurrent.Immutable;
+
 
 /**
  * CoercionThriftCodec encapsulates a ThriftCodec and coerces the values to another type using
  * the supplied ThriftCoercion.
  */
-@Immutable
+
 public class CoercionThriftCodec<T> implements ThriftCodec<T>
 {
     private final ThriftCodec<Object> codec;

@@ -25,7 +25,7 @@ import com.google.common.primitives.Ints;
 import com.google.common.primitives.Longs;
 import com.google.common.primitives.Shorts;
 
-import javax.annotation.Nullable;
+
 
 import java.util.Arrays;
 import java.util.List;
@@ -208,9 +208,9 @@ public final class ArrayField
     {
         return new Function<boolean[], List<Boolean>>()
         {
-            @Nullable
+
             @Override
-            public List<Boolean> apply(@Nullable boolean[] input)
+            public List<Boolean> apply( boolean[] input)
             {
                 if (input == null) {
                     return null;
@@ -224,9 +224,9 @@ public final class ArrayField
     {
         return new Function<short[], List<Short>>()
         {
-            @Nullable
+
             @Override
-            public List<Short> apply(@Nullable short[] input)
+            public List<Short> apply( short[] input)
             {
                 if (input == null) {
                     return null;
@@ -240,9 +240,9 @@ public final class ArrayField
     {
         return new Function<int[], List<Integer>>()
         {
-            @Nullable
+
             @Override
-            public List<Integer> apply(@Nullable int[] input)
+            public List<Integer> apply( int[] input)
             {
                 if (input == null) {
                     return null;
@@ -256,9 +256,9 @@ public final class ArrayField
     {
         return new Function<long[], List<Long>>()
         {
-            @Nullable
+
             @Override
-            public List<Long> apply(@Nullable long[] input)
+            public List<Long> apply( long[] input)
             {
                 if (input == null) {
                     return null;
@@ -272,9 +272,9 @@ public final class ArrayField
     {
         return new Function<double[], List<Double>>()
         {
-            @Nullable
+
             @Override
-            public List<Double> apply(@Nullable double[] input)
+            public List<Double> apply( double[] input)
             {
                 if (input == null) {
                     return null;

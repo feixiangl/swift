@@ -28,7 +28,7 @@ import com.thoughtworks.paranamer.BytecodeReadingParanamer;
 import com.thoughtworks.paranamer.CachingParanamer;
 import com.thoughtworks.paranamer.Paranamer;
 
-import javax.annotation.Nullable;
+
 
 import java.lang.annotation.Annotation;
 import java.lang.reflect.AccessibleObject;
@@ -332,9 +332,9 @@ public final class ReflectionHelper
     {
         return Lists.transform(Arrays.asList(genericTypes), new Function<Type, Type>()
         {
-            @Nullable
+
             @Override
-            public Type apply(@Nullable Type input)
+            public Type apply( Type input)
             {
                 return resolveFieldType(structType, input);
             }

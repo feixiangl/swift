@@ -22,10 +22,10 @@ import com.facebook.swift.codec.metadata.ThriftType;
 import com.google.common.base.Preconditions;
 import org.apache.thrift.protocol.TProtocol;
 
-import javax.annotation.concurrent.Immutable;
+
 import java.util.Map;
 
-@Immutable
+
 public class MapThriftCodec<K, V> implements ThriftCodec<Map<K, V>>
 {
     private final ThriftType thriftType;

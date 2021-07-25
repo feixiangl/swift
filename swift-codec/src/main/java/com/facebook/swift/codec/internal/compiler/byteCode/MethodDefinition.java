@@ -35,7 +35,7 @@ import org.objectweb.asm.tree.MethodNode;
 import org.objectweb.asm.tree.TypeInsnNode;
 import org.objectweb.asm.tree.VarInsnNode;
 
-import javax.annotation.concurrent.NotThreadSafe;
+
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
@@ -90,7 +90,7 @@ import static org.objectweb.asm.Opcodes.PUTSTATIC;
 import static org.objectweb.asm.Opcodes.RETURN;
 import static org.objectweb.asm.Opcodes.SWAP;
 
-@NotThreadSafe
+
 public class MethodDefinition
 {
     private final EnumSet<Access> access;

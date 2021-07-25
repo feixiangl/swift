@@ -21,7 +21,7 @@ import com.google.common.base.Predicate;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
 
-import javax.annotation.concurrent.Immutable;
+
 
 import java.util.List;
 import java.util.Map;
@@ -36,7 +36,7 @@ import static com.google.common.base.Preconditions.checkNotNull;
  * ThriftFieldMetadata defines a single thrift field including the value extraction and injection
  * points.
  */
-@Immutable
+
 public class ThriftFieldMetadata
 {
     private final short id;

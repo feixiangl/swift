@@ -17,9 +17,9 @@ package com.facebook.swift.codec.metadata;
 
 import com.facebook.swift.codec.ThriftEnum;
 
-import javax.annotation.concurrent.NotThreadSafe;
 
-@NotThreadSafe
+
+
 public class ThriftEnumMetadataBuilder<T extends Enum<T>>
 {
     private final Class<T> enumClass;

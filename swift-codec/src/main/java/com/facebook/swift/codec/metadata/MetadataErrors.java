@@ -18,7 +18,7 @@ package com.facebook.swift.codec.metadata;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Lists;
 
-import javax.annotation.concurrent.NotThreadSafe;
+
 import java.util.List;
 
 /**
@@ -27,7 +27,7 @@ import java.util.List;
  *
  * <p>This code is heavily based on https://github.com/dain/platform/blob/master/configuration/src/main/java/com/proofpoint/configuration/Problems.java</p>
  */
-@NotThreadSafe
+
 public class MetadataErrors
 {
     private final List<MetadataErrorException> errors = Lists.newArrayList();

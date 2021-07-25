@@ -32,7 +32,7 @@ import com.google.common.base.Throwables;
 import org.apache.thrift.protocol.TProtocol;
 import org.apache.thrift.protocol.TProtocolException;
 
-import javax.annotation.concurrent.Immutable;
+
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.HashMap;
@@ -42,7 +42,7 @@ import static com.facebook.swift.codec.metadata.FieldKind.THRIFT_FIELD;
 
 import static java.lang.String.format;
 
-@Immutable
+
 public class ReflectionThriftStructCodec<T> extends AbstractReflectionThriftCodec<T>
 {
     public ReflectionThriftStructCodec(ThriftCodecManager manager, ThriftStructMetadata metadata)

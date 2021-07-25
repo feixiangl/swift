@@ -15,11 +15,7 @@
  */
 package com.facebook.swift.generator.util;
 
-import com.google.common.base.Charsets;
-import com.google.common.base.Function;
 import com.google.common.collect.ImmutableMap;
-import com.google.common.collect.Iterables;
-import com.google.common.io.CharSource;
 import com.google.common.io.Resources;
 import io.airlift.log.Logger;
 import org.stringtemplate.v4.AttributeRenderer;
@@ -29,7 +25,6 @@ import org.stringtemplate.v4.STGroup;
 import org.stringtemplate.v4.misc.ErrorManager;
 import org.stringtemplate.v4.misc.STMessage;
 
-import javax.annotation.Nonnull;
 
 import java.io.IOException;
 import java.net.URL;
